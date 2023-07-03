@@ -1,12 +1,12 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"   # Box do Ubuntu 20.04
 
-  config.vm.define "nginx_vm" do |machine|
-    machine.vm.hostname = "nginx_vm"
+  config.vm.define "nginx-vm" do |machine|
+    machine.vm.hostname = "nginx-vm"
 
     machine.vm.network "forwarded_port", guest: 80, host: 8080
 
-    machine.vm.synced_folder "../data", "/vagrant_data"
+    config.vm.synced_folder ".", "/vagrant_data"
 
     machine.vm.provision "shell", inline: <<-SHELL
       apt-get update
